@@ -7,7 +7,6 @@ public abstract class Persona {
 	private String domicilio;
 	private Integer dni;
 	
-	private int contador;
 	
 	public Persona(String nombre, String nacionalidad, String fechaDeNacimiento, String domicilio, Integer dni) {
 		super();
