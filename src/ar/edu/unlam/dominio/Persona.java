@@ -1,18 +1,20 @@
 package ar.edu.unlam.dominio;
 
+import java.util.Objects;
+
 public abstract class Persona {
 	private String nombre;
 	private String nacionalidad;
-	private String fechaDeNacimiento;
+	private String edad;
 	private String domicilio;
 	private Integer dni;
 	
 	
-	public Persona(String nombre, String nacionalidad, String fechaDeNacimiento, String domicilio, Integer dni) {
+	public Persona(String nombre, String nacionalidad, String edad, String domicilio, Integer dni) {
 		super();
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
-		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.edad = edad;
 		this.domicilio = domicilio;
 		this.dni = dni;
 	}
@@ -38,13 +40,14 @@ public abstract class Persona {
 	}
 
 
-	public String getFechaDeNacimiento() {
-		return fechaDeNacimiento;
+
+	public String getEdad() {
+		return edad;
 	}
 
 
-	public void setFechaDeNacimiento(String fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
+	public void setEdad(String edad) {
+		this.edad = edad;
 	}
 
 
@@ -65,6 +68,27 @@ public abstract class Persona {
 
 	public void setDni(Integer dni) {
 		this.dni = dni;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dni, domicilio, edad, nacionalidad, nombre);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		return Objects.equals(dni, other.dni) && Objects.equals(domicilio, other.domicilio)
+				&& Objects.equals(edad, other.edad) && Objects.equals(nacionalidad, other.nacionalidad)
+				&& Objects.equals(nombre, other.nombre);
 	}
 	
 	

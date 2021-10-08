@@ -8,20 +8,22 @@ import ar.edu.unlam.dominio.Cliente;
 import ar.edu.unlam.dominio.Estudiante;
 import ar.edu.unlam.dominio.Factura;
 import ar.edu.unlam.dominio.Jubilado;
+import ar.edu.unlam.dominio.Libreria;
 import ar.edu.unlam.dominio.Socio;
+import ar.edu.unlam.dominio.Universidades;
 
 
 
-public class testLibreria {
+public class testFactura {
 
 	@Test
 	public void testCalcularDescuentoEnFactura() {
 		// 1- Preparacion:
 		// 1a- Datos de entrada
-		
-		Estudiante estudiante = new Estudiante("Pablo", "Argentina", "26", "Monte Grande", 123);
+		Libreria elAteneo=new Libreria();
+		Estudiante estudiante = new Estudiante("Pablo", "Argentina", "26", "Monte Grande", 123, 1244,Universidades.UNLAM);
 		Jubilado jubilado = new Jubilado("Anastasio", "Brasil", "93", "Moron", 111);
-		Socio socio = new Socio("Franco", "Uruguay", "35", "Lomas de Zamora", 122);
+		Socio socio = new Socio("Franco", "Uruguay", "35", "Lomas de Zamora", 122, 98544, elAteneo );
 		Cliente cliente = new Cliente("Pedro", "Argentina", "31", "San Justo", 133);
 		Factura facturaEst = new Factura(estudiante); 
 		Factura facturaJub = new Factura(jubilado); 
