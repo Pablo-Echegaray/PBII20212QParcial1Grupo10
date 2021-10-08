@@ -6,8 +6,8 @@ public class Estudiante extends Cliente{
 	private Universidades universidadConBeneficio;
 	
 
-	public Estudiante(String nombre, String nacionalidad, String fechaDeNacimiento, String domicilio, Integer dni, Integer numeroLibretaEstudiante, Universidades universidadConBeneficio) {
-		super(nombre, nacionalidad, fechaDeNacimiento, domicilio, dni);
+	public Estudiante(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroLibretaEstudiante, Universidades universidadConBeneficio) {
+		super(nombre, nacionalidad, edad, domicilio, dni);
 		
 		this.numeroLibretaEstudiante= numeroLibretaEstudiante;
 		this.universidadConBeneficio= universidadConBeneficio;
