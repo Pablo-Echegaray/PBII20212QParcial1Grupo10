@@ -16,11 +16,26 @@ public class Factura {
 		nroFactura++;
 	}
 
-	public Double calcularDescuento(Cliente cliente) {
-		return 0.0;
+	public Double calcularDescuento() {
+		Double descuento = 0.0;
+		if(this.cliente instanceof Estudiante) {
+			descuento = DESCUENTO_ESTUDIANTE;
+		}
+		if(this.cliente instanceof Jubilado) {
+			descuento = DESCUENTO_JUBILADO;
+		}
+		if(this.cliente instanceof Socio) {
+			descuento = DESCUENTO_SOCIO;
+		}
+		if(this.cliente.getClass() ==  Cliente.class) {
+			descuento = 0.0;
+		}
+		return descuento;
+		
 	}
 
 	public Double calcularPrecioTotal() {
+		
 		return 0.0;
 	}
 
