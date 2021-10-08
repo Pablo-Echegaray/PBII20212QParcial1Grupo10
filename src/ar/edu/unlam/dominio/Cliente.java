@@ -16,4 +16,9 @@ public class Cliente extends Persona{
 	public void ComprarLibro() {
 		
 	}
+
+	public void setLibrosComprados(CopiaLibro[] librosComprados) {
+		this.librosComprados = librosComprados;
+	}
+	
 }
