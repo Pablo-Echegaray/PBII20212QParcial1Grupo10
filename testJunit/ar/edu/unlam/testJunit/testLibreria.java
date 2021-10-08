@@ -37,10 +37,10 @@ public class testLibreria {
 		//------------------------------------------
 		// Ejecucion
 		
-		Double descEstudiante= facturaEst.calcularDescuento();
-		Double descJubilado=facturaJub.calcularDescuento();
-		Double descSocio=facturaSocio.calcularDescuento();
-		Double descCliente= facturaCliente.calcularDescuento();
+		Double descEstudiante= facturaEst.validarDescuento();
+		Double descJubilado=facturaJub.validarDescuento();
+		Double descSocio=facturaSocio.validarDescuento();
+		Double descCliente= facturaCliente.validarDescuento();
 		//------------------------------------------
 		// Validacion
 		assertEquals(DESCUENTO_ESTUDIANTE, descEstudiante);

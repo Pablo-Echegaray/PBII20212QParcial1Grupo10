@@ -6,13 +6,15 @@ public abstract class Libro {
 	private Integer anioEdicion;
 	private Autor autor;
 	private String editorial;
+	private Double precio;
 
-	public Libro(String titulo, Genero genero, Integer anioEdicion, Autor autor, String editorial) {
+	public Libro(String titulo, Genero genero, Integer anioEdicion, Autor autor, String editorial, Double precio) {
 		this.titulo = titulo;
 		this.genero = genero;
 		this.anioEdicion = anioEdicion;
 		this.autor = autor;
 		this.editorial = editorial;
+		this.precio = precio;
 
 	}
 
@@ -54,6 +56,10 @@ public abstract class Libro {
 
 	public void setEditorial(String editorial) {
 		this.editorial = editorial;
+	}
+	
+	public Double getPrecio() {
+		return this.precio;
 	}
 
 }

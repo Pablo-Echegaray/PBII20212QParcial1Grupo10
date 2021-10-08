@@ -9,6 +9,10 @@ public class Cliente extends Persona{
 		
 	}
 	
+	public CopiaLibro[] getLibrosComprados() {
+		return getLibrosComprados();
+	}
+	
 	public void ComprarLibro() {
 		
 	}

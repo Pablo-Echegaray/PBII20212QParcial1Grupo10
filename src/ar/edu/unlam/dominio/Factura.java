@@ -15,8 +15,24 @@ public class Factura {
 		this.precioTotal = 0.0;
 		nroFactura++;
 	}
-
-	public Double calcularDescuento() {
+	
+	public void calcularPrecioFinal() {
+		Double precioParcialDeLaCompra= obtenerPrecioParcialDeLaCompra();
+		Double iva = Math.ceil((precioParcialDeLaCompra * 21) / 100);
+		this.precioTotal = precioParcialDeLaCompra + iva - aplicarDescuento();
+		
+	}
+	
+	private Double aplicarDescuento() {
+		Double precioSinDescuento = obtenerPrecioParcialDeLaCompra();
+		Double descuentoAAplicarEnPorcentaje = validarDescuento();
+		Double descuentoAAplicarEnMoneda= Math.ceil((precioSinDescuento * descuentoAAplicarEnPorcentaje / 100));
+		
+		return descuentoAAplicarEnMoneda;
+	}
+	
+     //Pasar modificador de acceso a <private>
+	public Double validarDescuento() {
 		Double descuento = 0.0;
 		if(this.cliente instanceof Estudiante) {
 			descuento = DESCUENTO_ESTUDIANTE;
@@ -33,10 +49,24 @@ public class Factura {
 		return descuento;
 		
 	}
-
-	public Double calcularPrecioTotal() {
+	
+	private Double obtenerPrecioParcialDeLaCompra() {
+		CopiaLibro[] ejemplaresACobrar= this.cliente.getLibrosComprados();
+		Double precioParcial= 0.0;
+		for(int i=0; i< ejemplaresACobrar.length; i++) {
+			if(ejemplaresACobrar[i]!=null) {
+				
+				precioParcial+= ejemplaresACobrar[i].getPrecio();
+			}
+			
+		}
 		
-		return 0.0;
+		return precioParcial;
 	}
+	
+	
+	
+
+
 
 }
