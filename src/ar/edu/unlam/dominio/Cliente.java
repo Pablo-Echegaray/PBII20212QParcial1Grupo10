@@ -5,8 +5,8 @@ public class Cliente extends Persona{
 	private CopiaLibro  librosComprados[];
 	private Integer variableControl;
 	
-	public Cliente(String nombre, String nacionalidad, String fechaDeNacimiento, String domicilio, Integer dni) {
-		super(nombre, nacionalidad, fechaDeNacimiento, domicilio, dni);
+	public Cliente(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni) {
+		super(nombre, nacionalidad, edad, domicilio, dni);
 		this.librosComprados= new CopiaLibro[4];
 		this.variableControl=0;
 		

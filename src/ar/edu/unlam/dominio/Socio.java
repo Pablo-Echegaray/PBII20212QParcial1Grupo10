@@ -7,7 +7,7 @@ public class Socio extends Cliente{
 	private Integer numeroSocio=0;
 	private Libreria elAteneo;
 	
-	public Socio(String nombre, String nacionalidad, String edad, String domicilio, Integer dni, Integer numeroSocio, Libreria elAteneo) {
+	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroSocio, Libreria elAteneo) {
 		super(nombre, nacionalidad, edad, domicilio, dni);
 	 
 		this.numeroSocio=numeroSocio;

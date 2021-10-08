@@ -5,12 +5,12 @@ import java.util.Objects;
 public abstract class Persona {
 	private String nombre;
 	private String nacionalidad;
-	private String edad;
+	private Integer edad;
 	private String domicilio;
 	private Integer dni;
 	
 	
-	public Persona(String nombre, String nacionalidad, String edad, String domicilio, Integer dni) {
+	public Persona(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni) {
 		super();
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
@@ -41,12 +41,12 @@ public abstract class Persona {
 
 
 
-	public String getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
 
-	public void setEdad(String edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 
