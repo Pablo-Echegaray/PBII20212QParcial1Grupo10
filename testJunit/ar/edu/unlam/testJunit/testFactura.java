@@ -20,7 +20,7 @@ public class testFactura {
 	public void testCalcularDescuentoEnFactura() {
 		// 1- Preparacion:
 		// 1a- Datos de entrada
-		Libreria elAteneo=new Libreria();
+		Libreria elAteneo= new Libreria("El Ateneo", "Suipacha 655");
 		Estudiante estudiante = new Estudiante("Pablo", "Argentina", 26, "Monte Grande", 123, 1244,Universidades.UNLAM);
 		Jubilado jubilado = new Jubilado("Anastasio", "Brasil", 93, "Moron", 111);
 		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 98544, elAteneo );
