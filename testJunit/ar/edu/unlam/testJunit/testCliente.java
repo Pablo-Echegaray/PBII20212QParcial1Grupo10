@@ -21,7 +21,7 @@ public class testCliente {
 
 		Boolean compraExitosa = true;
 
-		Boolean sePuedoComprarLibro = cliente.ComprarLibro(copiaElPrincipito);
+		Boolean sePuedoComprarLibro = cliente.comprarLibro(copiaElPrincipito);
 
 		assertEquals(compraExitosa, sePuedoComprarLibro);
 
