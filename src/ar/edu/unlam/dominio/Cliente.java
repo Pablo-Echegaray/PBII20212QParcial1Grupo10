@@ -34,5 +34,7 @@ public class Cliente extends Persona{
 	public void setLibrosComprados(CopiaLibro[] librosComprados) {
 		this.librosComprados = librosComprados;
 	}
+
+	
 	
 }

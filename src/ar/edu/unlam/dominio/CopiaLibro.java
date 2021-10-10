@@ -6,4 +6,13 @@ public class CopiaLibro extends Libro {
 		super(titulo, genero, anioEdicion, autor, editorial, precio);
 	}
 
+	@Override
+	public String toString() {
+		return "CopiaLibro [getTitulo()=" + getTitulo() + ", getGenero()=" + getGenero() + ", getAnioEdicion()="
+				+ getAnioEdicion() + ", getAutor()=" + getAutor() + ", getEditorial()=" + getEditorial()
+				+ ", getPrecio()=" + getPrecio() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }
