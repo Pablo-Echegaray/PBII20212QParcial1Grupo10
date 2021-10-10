@@ -42,7 +42,7 @@ public class testLibreria {
 		assertEquals(seAgregoExitosamente, seAgregaOtroLibro);
 	}
 	
-   // @Test
+    @Test
 	public void queSePuedaVenderUnaCopiaLibro(){
     	Libreria elAteneo = new Libreria ("El Ateneo", "Suipacha 655");
     	Autor antoine = new Autor ("Antonie", "Francesa", 98, "Torre Eifel 520", 20132);
@@ -50,10 +50,35 @@ public class testLibreria {
     	
     	Boolean seAgrego = elAteneo.agregarCopiaLibro(elPrincipito);
     	Boolean seIntentaVender = elAteneo.venderLibro(elPrincipito);
+    	Boolean seIntentaVender2 = elAteneo.venderLibro(elPrincipito);
     	Boolean sePudoVenderExitosamente = true;
     	
     	assertEquals(seIntentaVender, sePudoVenderExitosamente);
+    	assertEquals(sePudoVenderExitosamente, seIntentaVender2);
     	
+    }
+    
+    @Test
+	public void queSiLaCantidadParcialEnStockEsCeroSeElimineDelArrayLibrosEnStock() {
+    	Libreria elAteneo = new Libreria ("El Ateneo", "Suipacha 655");
+    	Autor autor = new Autor("Michael Foucault", "Francesa", 1930, "Paris", 123);
+		CopiaLibro libro = new CopiaLibro("Vigilar y Castigar", Genero.ACADEMICO, 1975, autor, "Éditions Gallimard", 900.0, 2);
+		
+		Integer posicionesNullEsperadas = 10;
+		Integer posicionesNull = 0;
+		elAteneo.agregarCopiaLibro(libro);
+		elAteneo.venderLibro(libro);
+		elAteneo.venderLibro(libro);
+		CopiaLibro [] librosEnStock = elAteneo.getLibrosEnStock();
+		
+		
+		for(int i=0; i< librosEnStock.length; i++) {
+			if(librosEnStock[i] == null) {
+				posicionesNull++;
+			}
+		}
+		
+		assertEquals(posicionesNullEsperadas, posicionesNull);
     }
     
     //@Test

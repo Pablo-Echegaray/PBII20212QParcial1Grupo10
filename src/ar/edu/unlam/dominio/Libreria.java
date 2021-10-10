@@ -75,7 +75,7 @@ public class Libreria {
 						if(libro.getCantidadParcialEnStock() > 0) {
 						librosVendidos[contador++] = libro;
 						libro.incrementarCantidadVendida();
-						libro.actualizarCantidadParcialLibrosEnStock();
+						
 						sePuedeVender = true;
 						if(libro.getCantidadParcialEnStock() ==0) {
 							librosEnStock[i] = null;

@@ -196,7 +196,7 @@ public class InterfazLibreria {
 				Integer identificadorSocio;
 				System.out.println("Ingrese el identificador de Socio");
 				identificadorSocio=teclado.nextInt();
-				Socio socioNuevo=new Socio(nombre, nacionalidad,edad, domicilio,dni,identificadorSocio);
+				//Socio socioNuevo=new Socio(nombre, nacionalidad,edad, domicilio,dni,identificadorSocio, );
 				//System.out.println("se creo "+socioNuevo.toString());
 				break;
 			case 4:
