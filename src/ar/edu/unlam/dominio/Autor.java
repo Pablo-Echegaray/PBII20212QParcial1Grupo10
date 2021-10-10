@@ -31,7 +31,7 @@ public class Autor extends Persona{
 		
 	
 	}
-	@Override
+	
 	public String toString() {
 		return "Autor " + getNombre() + " de nacionalidad " + getNacionalidad() + ",tiene "
 				+ getEdad() +" años "+ ", su domicilio es " + getDomicilio() + ", y su dni es " + getDni();

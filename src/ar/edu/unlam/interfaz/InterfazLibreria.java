@@ -5,7 +5,11 @@ import java.util.Scanner;
 import ar.edu.unlam.dominio.Autor;
 import ar.edu.unlam.dominio.Cliente;
 import ar.edu.unlam.dominio.CopiaLibro;
+import ar.edu.unlam.dominio.Estudiante;
 import ar.edu.unlam.dominio.Genero;
+import ar.edu.unlam.dominio.Jubilado;
+import ar.edu.unlam.dominio.Socio;
+import ar.edu.unlam.dominio.Universidades;
 
 public class InterfazLibreria {
 	static Scanner teclado = new Scanner(System.in);
@@ -21,10 +25,10 @@ public class InterfazLibreria {
 						crearCliente();
 						break;
 					case 2:
-						guardarDatosAutor();
+						guardarDatosLibro();
 						break;
 					case 3:
-						guardarDatosLibro();
+						
 						break;
 					case 4:
 						
@@ -43,6 +47,7 @@ public class InterfazLibreria {
 			
 			System.out.println("---------------------------------------------");
 			System.out.println("¿De que autor es el libro que vas a ingresar? ");
+			System.out.println("---------------------------------------------");
 				String nombre, nacionalidad, domicilio;
 				Integer edad, dni;
 				
@@ -62,12 +67,13 @@ public class InterfazLibreria {
 				dni=teclado.nextInt();
 				teclado.nextLine();
 				Autor autor=new Autor(nombre, nacionalidad,edad, domicilio,dni);	
+				
 			System.out.println("-----------------------------------------------");		
 			System.out.println("Ingresar copia libro en el stock libreria: ");
 			System.out.println("-----------------------------------------------");	
 				String titulo,editorial;
 				Double precio;
-				Integer anioEdicion;
+				Integer anioEdicion,cantidadIngresadaEnStock;
 				Genero genero;
 			
 			System.out.println("Introduzca el titulo del libro: ");
@@ -85,7 +91,7 @@ public class InterfazLibreria {
 		
 			genero=elegirGenero ();
 			
-			CopiaLibro nuevaCopia= new CopiaLibro(titulo,genero,anioEdicion,autor,editorial ,precio);
+			CopiaLibro nuevaCopia= new CopiaLibro(titulo,genero,anioEdicion,autor,editorial ,precio, null);
 			System.out.println(nuevaCopia.toString());
 		}
 		
@@ -141,31 +147,6 @@ public class InterfazLibreria {
 			
 		
 		
-		
-		
-		private static void guardarDatosAutor() {
-			String nombre, nacionalidad, domicilio;
-			Integer edad, dni;
-			
-			System.out.println("Introduzca el nombre y apellido: ");
-			nombre=teclado.nextLine();
-			
-			System.out.println("Introduzca la nacionalidad: ");
-			nacionalidad=teclado.nextLine();
-			
-			System.out.println("Introduzca la edad: ");
-			edad=teclado.nextInt();
-			
-			System.out.println("Introduzca el domicilio: ");
-			domicilio=teclado.nextLine();
-			
-			System.out.println("Introduzca el numero de DNI: ");
-			dni=teclado.nextInt();
-			
-			Autor autor=new Autor(nombre, nacionalidad,edad, domicilio,dni);
-			System.out.println("Se guardo los datos del "+autor.toString());
-		
-	}
 
 		private static void crearCliente() {
 			String nombre,nacionalidad, domicilio;
@@ -175,7 +156,7 @@ public class InterfazLibreria {
 			nombre=teclado.nextLine();
 			
 			System.out.println("Introduzca la nacionalidad:");
-			nacionalidad=teclado.next();
+			nacionalidad=teclado.nextLine();
 			
 			System.out.println("Introduzca el domicilio: ");
 			domicilio=teclado.nextLine();
@@ -186,11 +167,61 @@ public class InterfazLibreria {
 			System.out.println("Introduzca el numero de DNI: ");
 			dni=teclado.nextInt();
 			
-			Cliente cliente=new Cliente(nombre, nacionalidad,edad, domicilio,dni);
 			
+			tipoCliente(nombre, nacionalidad, domicilio, edad, dni);
 			
 		
+		
 	}
+
+		private static void tipoCliente(String nombre, String nacionalidad, String domicilio, Integer edad,
+				Integer dni) {
+			int tipoCliente=0;
+			tipoCliente=seleccionarTipoCliente();
+			switch(tipoCliente){
+			case 1:
+				Integer numeroLibretaEstudiante;
+				System.out.println("Introduce el número de libreta: ");
+				numeroLibretaEstudiante=teclado.nextInt();
+				teclado.nextLine();
+				
+				Estudiante estudianteNuevo=new Estudiante(nombre, nacionalidad,edad, domicilio,dni, numeroLibretaEstudiante, null);
+				//System.out.println("se creo "+estudianteNuevo.toString());
+				break;
+			case 2:
+				Jubilado jubiladoNuevo=new Jubilado(nombre, nacionalidad,edad, domicilio,dni);
+				//System.out.println("se creo "+jubiladoNuevo.toString());
+				break;
+			case 3:
+				Integer identificadorSocio;
+				System.out.println("Ingrese el identificador de Socio");
+				identificadorSocio=teclado.nextInt();
+				Socio socioNuevo=new Socio(nombre, nacionalidad,edad, domicilio,dni,identificadorSocio);
+				//System.out.println("se creo "+socioNuevo.toString());
+				break;
+			case 4:
+				Cliente clienteNuevo=new Cliente(nombre, nacionalidad,edad, domicilio,dni);
+				//System.out.println("se creo "+clienteNuevo.toString());
+				break;
+			default:
+				System.out.println("Opcion incorrecta");
+				break;
+			}
+		}
+
+		private static int seleccionarTipoCliente() {
+			int tipoCliente;
+			System.out.println("------------------------------------");
+			System.out.println(" Indicar su categoria ");
+			System.out.println("1- Estudiante");
+			System.out.println("2- Jubilado");
+			System.out.println("3- Socio");
+			System.out.println("4- Ninguna");
+			System.out.println("------------------------------------");
+			tipoCliente=teclado.nextInt();
+			teclado.nextLine();
+			return tipoCliente;
+		}
 
 		private static int seleccionarOpcion() {
 				
