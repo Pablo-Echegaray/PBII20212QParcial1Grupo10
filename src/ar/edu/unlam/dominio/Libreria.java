@@ -67,16 +67,30 @@ public class Libreria {
 //		}
 		
 		//Implementacion Pablo
+		
+		private Boolean validarLibrosVendidosExistentes(CopiaLibro libro) {
+			Boolean existeEnLibrosVendidos = false;
+			for(int i=0; i<this.librosVendidos.length; i++) {
+				if(this.librosVendidos[i] !=null) {
+					if(this.librosVendidos[i].equals(libro)) {
+						existeEnLibrosVendidos = true;
+					}
+				}
+			}
+			return existeEnLibrosVendidos;
+		}
+		
 		public Boolean venderLibro(CopiaLibro libro) {
 			Boolean sePuedeVender = false;
 			for(int i = 0; i < librosEnStock.length; i++) {
 				if(librosEnStock[i] != null) {
 					if(librosEnStock[i].equals(libro)) {
 						if(libro.getCantidadParcialEnStock() > 0) {
-						librosVendidos[contador++] = libro;
 						libro.incrementarCantidadVendida();
-						
 						sePuedeVender = true;
+						if(!validarLibrosVendidosExistentes(libro)) {
+							librosVendidos[contador++] = libro;
+						}
 						if(libro.getCantidadParcialEnStock() ==0) {
 							librosEnStock[i] = null;
 						}
@@ -88,6 +102,39 @@ public class Libreria {
 			}
 			return sePuedeVender;
 		}
+		
+		private CopiaLibro [] ordenarLibrosVendidosPorCantidadDeVendidos() {
+			CopiaLibro[] librosVendidos = this.getLibrosVendidos();
+			CopiaLibro auxiliar;
+			for(int i=1; i<librosVendidos.length; i++) {
+				for(int j = 0; j< librosVendidos.length - 1; i++) {
+					if(librosVendidos[j] != null && librosVendidos[j+1] !=null) {
+						if(librosVendidos[j].getCantidadVendida() < librosVendidos[j+1].getCantidadVendida()) {
+							auxiliar = librosVendidos[j+1];
+							librosVendidos[j+1] = librosVendidos[j];
+							librosVendidos[j]= auxiliar;
+						}
+					}
+				}
+			}
+			return librosVendidos;
+			
+		}
+		
+		public CopiaLibro bestSeller () {
+			CopiaLibro [] librosVendidos = ordenarLibrosVendidosPorCantidadDeVendidos();
+			CopiaLibro bestSeller = null;
+			Integer vendidos = librosVendidos[0].getCantidadVendida();
+			for(int i=0; i<librosVendidos.length; i++) {
+				if(librosVendidos[i] !=null) {
+					if(librosVendidos[i].getCantidadVendida() > vendidos) {
+						vendidos = librosVendidos[i].getCantidadVendida();
+						bestSeller = librosVendidos[i];
+					}
+				}
+			}
+			return bestSeller;
+		}	
 		
 		private Boolean validarSocioExistente(Socio socio) {
 			Boolean coincidenciaSocio = false;

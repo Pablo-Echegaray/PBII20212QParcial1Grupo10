@@ -25,7 +25,7 @@ public class testLibreria {
 		
 	}
 	
-	@Test
+	//@Test
 	public void queNoSePuedaAgregarUnLibroRepetido() {
 		Libreria elAteneo = new Libreria ("El Ateneo", "Suipacha 655");
 		Autor antoine = new Autor ("Antonie", "Francesa", 98, "Torre Eifel 520", 20132);
@@ -42,7 +42,7 @@ public class testLibreria {
 		assertEquals(seAgregoExitosamente, seAgregaOtroLibro);
 	}
 	
-    @Test
+   // @Test
 	public void queSePuedaVenderUnaCopiaLibro(){
     	Libreria elAteneo = new Libreria ("El Ateneo", "Suipacha 655");
     	Autor antoine = new Autor ("Antonie", "Francesa", 98, "Torre Eifel 520", 20132);
@@ -58,7 +58,7 @@ public class testLibreria {
     	
     }
     
-    @Test
+   // @Test
 	public void queSiLaCantidadParcialEnStockEsCeroSeElimineDelArrayLibrosEnStock() {
     	Libreria elAteneo = new Libreria ("El Ateneo", "Suipacha 655");
     	Autor autor = new Autor("Michael Foucault", "Francesa", 1930, "Paris", 123);
@@ -80,6 +80,7 @@ public class testLibreria {
 		
 		assertEquals(posicionesNullEsperadas, posicionesNull);
     }
+    
     
     //@Test
     public void queSePuedaAgregarUnSocio() {
