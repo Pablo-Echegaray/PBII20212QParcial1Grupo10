@@ -26,7 +26,7 @@ public class CopiaLibro extends Libro {
 		}
 		
 	}
-	
+
 	public void incrementarCantidadVendida() {
 		if(this.cantidadIngresadaEnStock > this.cantidadVendida) {
 		this.cantidadVendida++;
@@ -45,16 +45,16 @@ public class CopiaLibro extends Libro {
 	public Integer getCantidadIngresadaEnStock() {
 		return this.cantidadIngresadaEnStock;
 	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "CopiaLibro [cantidadIngresadaEnStock=" + cantidadIngresadaEnStock + ", cantidadVendida="
+				+ cantidadVendida + ", cantidadParcialEnStock=" + cantidadParcialEnStock + "]" + " Titulo : " + getTitulo()+ " Autor "+ getAutor().getNombre();
+	}
+
 	
-
-		@Override
-		public String toString() {
-			return "Se creo la copia libro de " + getTitulo() + ", que pertence al genero " + getGenero() + ", cuyo año de edición es "
-					+ getAnioEdicion() + ", su Autor es:  "+ getAutor() + ", su editorial es " + getEditorial()
-					+ "su precio es: " + getPrecio();
-		}
-
-
-
 
 }

@@ -91,9 +91,9 @@ public class Libreria {
 						if(!validarLibrosVendidosExistentes(libro)) {
 							librosVendidos[contador++] = libro;
 						}
-						if(libro.getCantidadParcialEnStock() ==0) {
-							librosEnStock[i] = null;
-						}
+//						if(libro.getCantidadParcialEnStock() ==0) {
+//							this.librosEnStock[i] = null;
+//						}
 						
 						break;
 						}
@@ -103,7 +103,9 @@ public class Libreria {
 			return sePuedeVender;
 		}
 		
-		private CopiaLibro [] ordenarLibrosVendidosPorCantidadDeVendidos() {
+		//ordenarLibrosVendidosPorCantidadDeVendidos
+		
+		public CopiaLibro bestSeller() {
 			CopiaLibro[] librosVendidos = this.getLibrosVendidos();
 			CopiaLibro auxiliar;
 			for(int i=1; i<librosVendidos.length; i++) {
@@ -117,24 +119,24 @@ public class Libreria {
 					}
 				}
 			}
-			return librosVendidos;
+			return librosVendidos[0];
 			
 		}
 		
-		public CopiaLibro bestSeller () {
-			CopiaLibro [] librosVendidos = ordenarLibrosVendidosPorCantidadDeVendidos();
-			CopiaLibro bestSeller = null;
-			Integer vendidos = librosVendidos[0].getCantidadVendida();
-			for(int i=0; i<librosVendidos.length; i++) {
-				if(librosVendidos[i] !=null) {
-					if(librosVendidos[i].getCantidadVendida() > vendidos) {
-						vendidos = librosVendidos[i].getCantidadVendida();
-						bestSeller = librosVendidos[i];
-					}
-				}
-			}
-			return bestSeller;
-		}	
+//		public CopiaLibro bestSeller () {
+//			CopiaLibro [] librosVendidos = ordenarLibrosVendidosPorCantidadDeVendidos();
+//			CopiaLibro bestSeller = null;
+//			Integer vendidos = librosVendidos[0].getCantidadVendida();
+//			for(int i=0; i<librosVendidos.length; i++) {
+//				if(librosVendidos[i] !=null) {
+//					if(librosVendidos[i].getCantidadVendida() > vendidos) {
+//						vendidos = librosVendidos[i].getCantidadVendida();
+//						bestSeller = librosVendidos[i];
+//					}
+//				}
+//			}
+//			return bestSeller;
+//		}	
 		
 		private Boolean validarSocioExistente(Socio socio) {
 			Boolean coincidenciaSocio = false;
