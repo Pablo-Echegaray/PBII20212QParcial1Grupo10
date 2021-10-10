@@ -1,5 +1,6 @@
 package ar.edu.unlam.dominio;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Socio extends Cliente{
@@ -7,11 +8,10 @@ public class Socio extends Cliente{
 	private Integer numeroSocio=0;
 	private Libreria elAteneo;
 	
-	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroSocio, Libreria elAteneo) {
+	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroSocio) {
 		super(nombre, nacionalidad, edad, domicilio, dni);
 	 
 		this.numeroSocio=numeroSocio;
-		this.elAteneo=elAteneo;
 	}
 	
 	public Boolean darseDeBaja(Socio socio) {
@@ -59,6 +59,8 @@ public class Socio extends Cliente{
 		Socio other = (Socio) obj;
 		return Objects.equals(numeroSocio, other.numeroSocio);
 	}
+
+	
 
 	
 
