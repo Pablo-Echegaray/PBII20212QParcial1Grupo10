@@ -9,16 +9,19 @@ public class Libreria {
 		private Socio listadoDeSocios[];
 		private Integer controlCantidadSocios;
 		private Integer contador;
+	    private Integer contadorStock;
 
 		
 		public Libreria(String nombre, String direccion) {
-			this.contador = 0;
+			
 			this.nombre = nombre;
 			this.direccion = direccion;
 			this.librosEnStock = new CopiaLibro[10];
 			this.librosVendidos = new CopiaLibro[10];
 			this.listadoDeSocios = new Socio[10];
 			this.controlCantidadSocios = 0;
+			this.contador = 0;
+			this.contadorStock = 0;
 		}
 		
 		/* public Integer libroMasVendidos(CopiaLibro librosVendidos) {
@@ -29,11 +32,17 @@ public class Libreria {
 		
 		*/
 		
-		public Boolean agregarCopiaLibro(CopiaLibro nuevo) {
+		public Boolean agregarCopiaLibro(CopiaLibro libro) {
 			Boolean seAgrego = false;
+			
 			for(int i = 0; i < librosEnStock.length; i++) {
 				if(librosEnStock[i] == null) {
-					librosEnStock[i] = nuevo;
+					for(int j=0; j<librosEnStock.length; j++) {
+						if(librosEnStock[j] != null && librosEnStock[j].equals(libro)) {
+							return seAgrego = false;
+						}
+					}
+					librosEnStock[contadorStock++] = libro;
 					seAgrego = true;
 					break;
 				}	
@@ -41,15 +50,39 @@ public class Libreria {
 			return seAgrego;
 		}
 		
-		public Boolean vender(CopiaLibro libro) {
+		//Implementacion Julian
+//		public Boolean vender(CopiaLibro libro) {
+//			Boolean sePuedeVender = false;
+//			for(int i = 0; i < librosEnStock.length; i++) {
+//				if(librosEnStock[i] != null) {
+//					if(librosEnStock[i].equals(libro)) {
+//						librosEnStock[i] = null;
+//						librosVendidos[contador++] = libro;
+//						sePuedeVender = true;
+//						break;
+//					}
+//				}
+//			}
+//			return sePuedeVender;
+//		}
+		
+		//Implementacion Pablo
+		public Boolean venderLibro(CopiaLibro libro) {
 			Boolean sePuedeVender = false;
 			for(int i = 0; i < librosEnStock.length; i++) {
 				if(librosEnStock[i] != null) {
 					if(librosEnStock[i].equals(libro)) {
-						librosEnStock[i] = null;
+						if(libro.getCantidadParcialEnStock() > 0) {
 						librosVendidos[contador++] = libro;
+						libro.incrementarCantidadVendida();
+						libro.actualizarCantidadParcialLibrosEnStock();
 						sePuedeVender = true;
+						if(libro.getCantidadParcialEnStock() ==0) {
+							librosEnStock[i] = null;
+						}
+						
 						break;
+						}
 					}
 				}
 			}
@@ -109,11 +142,11 @@ public class Libreria {
 			
 		}
 		
-		public Libro[] getLibrosEnStock() {
+		public CopiaLibro[] getLibrosEnStock() {
 			return librosEnStock;
 		}
 		
-		public Libro[] getLibrosVendidos() {
+		public CopiaLibro[] getLibrosVendidos() {
 			return librosVendidos;
 		}
 
