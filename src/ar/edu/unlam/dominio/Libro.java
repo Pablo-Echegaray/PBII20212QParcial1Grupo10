@@ -19,6 +19,8 @@ public abstract class Libro {
 		this.precio = precio;
 
 	}
+	
+	protected abstract void actualizarCantidadParcialLibrosEnStock();
 
 	public String getTitulo() {
 		return titulo;

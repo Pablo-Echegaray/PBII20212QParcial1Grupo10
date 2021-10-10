@@ -11,7 +11,7 @@ public abstract class Persona {
 	
 	
 	public Persona(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni) {
-		super();
+		
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
 		this.edad = edad;

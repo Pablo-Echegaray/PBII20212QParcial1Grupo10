@@ -1,5 +1,7 @@
 package ar.edu.unlam.dominio;
 
+import java.util.Arrays;
+
 public class Estudiante extends Cliente{
 	
 	private Integer numeroLibretaEstudiante;
@@ -14,7 +16,7 @@ public class Estudiante extends Cliente{
 		
 	
 	}
-	
+
 	
 
 }
