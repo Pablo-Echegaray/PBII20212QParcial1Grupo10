@@ -1,36 +1,33 @@
 package ar.edu.unlam.dominio;
 
-import java.util.Arrays;
 import java.util.Objects;
 
-public class Socio extends Cliente{
+public class Socio extends Cliente {
 
 	private Integer numeroSocio;
-	private Libreria libreria;
-	
-	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroSocio, Libreria libreria) {
-		super(nombre, nacionalidad, edad, domicilio, dni);
-	 
-		this.numeroSocio=numeroSocio;
-		this.libreria=libreria;
+
+	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroSocio,
+			Libreria libreria) {
+		super(nombre, nacionalidad, edad, domicilio, dni, libreria);
+
+		this.numeroSocio = numeroSocio;
+
 	}
-	
+
 	public Boolean darseDeBaja(Socio socio) {
-		Boolean aceptarBajaSocio=false;
-		Socio copiaListadoDeSocio[]= libreria.getListadoDeSocios();
+		Boolean aceptarBajaSocio = false;
+		Socio copiaListadoDeSocio[] = super.getLibreria().getListadoDeSocios();
 		for (int i = 0; i < copiaListadoDeSocio.length; i++) {
-			if (copiaListadoDeSocio[i]!=null) {
+			if (copiaListadoDeSocio[i] != null) {
 				if (copiaListadoDeSocio[i].equals(socio)) {
-					
+
 				}
-				
-				
-				
+
 			}
 		}
-		
+
 		return aceptarBajaSocio;
-		
+
 	}
 
 	public Integer getNumeroSocio() {
@@ -60,9 +57,5 @@ public class Socio extends Cliente{
 		Socio other = (Socio) obj;
 		return Objects.equals(numeroSocio, other.numeroSocio);
 	}
-
-	
-
-	
 
 }
