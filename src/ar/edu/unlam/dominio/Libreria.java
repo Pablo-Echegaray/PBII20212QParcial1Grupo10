@@ -34,7 +34,7 @@ public class Libreria {
 			for(int i = 0; i < librosEnStock.length; i++) {
 				if(librosEnStock[i] == null) {
 					librosEnStock[i] = nuevo;
-					seAgrego = true;
+					System.out.println(seAgrego = true);
 					break;
 				}	
 			}

@@ -8,13 +8,14 @@ import ar.edu.unlam.dominio.CopiaLibro;
 import ar.edu.unlam.dominio.Estudiante;
 import ar.edu.unlam.dominio.Genero;
 import ar.edu.unlam.dominio.Jubilado;
+import ar.edu.unlam.dominio.Libreria;
 import ar.edu.unlam.dominio.Socio;
 import ar.edu.unlam.dominio.Universidades;
 
 public class InterfazLibreria {
 	static Scanner teclado = new Scanner(System.in);
 	
-	
+	static Libreria libreria= new Libreria("LIBRERIA", "CABA");
 	public static void main(String[] args) {
 		
 		int opcion = 0;
@@ -28,10 +29,7 @@ public class InterfazLibreria {
 						guardarDatosLibro();
 						break;
 					case 3:
-						
-						break;
-					case 4:
-						
+						//venderLibro();
 						break;
 					case 9:
 						break;
@@ -42,6 +40,19 @@ public class InterfazLibreria {
 
 			} while (opcion != 9);
 		}
+/*
+		private static void venderLibro() {
+			System.out.println("Introduzca el titulo del libro: ");
+			String titulo=teclado.nextLine();
+			
+			System.out.println("Introduzca precio: ");
+			Double precio=(Double)teclado.nextDouble();
+			teclado.nextLine();
+			CopiaLibro copia=new CopiaLibro(titulo, null, null, null, null, precio, null);
+			System.out.println("Se vendio"+libreria.vender(copia));
+
+		}*/
+
 
 		private static void guardarDatosLibro() {
 			
@@ -73,7 +84,7 @@ public class InterfazLibreria {
 			System.out.println("-----------------------------------------------");	
 				String titulo,editorial;
 				Double precio;
-				Integer anioEdicion,cantidadIngresadaEnStock;
+				Integer anioEdicion,cantidadIngresadaEnStock=0;
 				Genero genero;
 			
 			System.out.println("Introduzca el titulo del libro: ");
@@ -91,8 +102,11 @@ public class InterfazLibreria {
 		
 			genero=elegirGenero ();
 			
-			CopiaLibro nuevaCopia= new CopiaLibro(titulo,genero,anioEdicion,autor,editorial ,precio, null);
+			CopiaLibro nuevaCopia= new CopiaLibro(titulo,genero,anioEdicion,autor,editorial ,precio,cantidadIngresadaEnStock );
 			System.out.println(nuevaCopia.toString());
+			libreria.agregarCopiaLibro(nuevaCopia);
+			cantidadIngresadaEnStock++;
+			System.out.println(libreria.agregarCopiaLibro(nuevaCopia));
 		}
 		
 		private static int seleccionarOpcionGenero() {
@@ -170,8 +184,6 @@ public class InterfazLibreria {
 			
 			tipoCliente(nombre, nacionalidad, domicilio, edad, dni);
 			
-		
-		
 	}
 
 		private static void tipoCliente(String nombre, String nacionalidad, String domicilio, Integer edad,
@@ -186,18 +198,18 @@ public class InterfazLibreria {
 				teclado.nextLine();
 				
 				Estudiante estudianteNuevo=new Estudiante(nombre, nacionalidad,edad, domicilio,dni, numeroLibretaEstudiante, null);
-				//System.out.println("se creo "+estudianteNuevo.toString());
+				System.out.println("se creo "+estudianteNuevo.toString());
 				break;
 			case 2:
 				Jubilado jubiladoNuevo=new Jubilado(nombre, nacionalidad,edad, domicilio,dni);
-				//System.out.println("se creo "+jubiladoNuevo.toString());
+				System.out.println("se creo "+jubiladoNuevo.toString());
 				break;
 			case 3:
 				Integer identificadorSocio;
 				System.out.println("Ingrese el identificador de Socio");
 				identificadorSocio=teclado.nextInt();
 				Socio socioNuevo=new Socio(nombre, nacionalidad,edad, domicilio,dni,identificadorSocio);
-				//System.out.println("se creo "+socioNuevo.toString());
+				System.out.println("se creo "+socioNuevo.toString());
 				break;
 			case 4:
 				Cliente clienteNuevo=new Cliente(nombre, nacionalidad,edad, domicilio,dni);
@@ -231,9 +243,8 @@ public class InterfazLibreria {
 			System.out.println("BIENVENIDO A LIBRERIA");
 			System.out.println("Menu de opciones\n");
 			System.out.println("1 - Ingresar nuevo cliente");
-			System.out.println("2 - Guardar datos de un Autor");
-			System.out.println("3 - Guardar datos de un Libro");
-			System.out.println("4 - ");
+			System.out.println("2 - Guardar datos de un Libro");
+			//System.out.println("3 - Vender libro");
 			System.out.println("9 - Salir");
 			System.out.println("-----------------------------------");
 			System.out.println("Ingrese una opcion");

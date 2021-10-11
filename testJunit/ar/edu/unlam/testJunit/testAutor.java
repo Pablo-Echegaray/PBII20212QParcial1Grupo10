@@ -32,12 +32,11 @@ public class testAutor {
 	public void queSePuedaAgregarUnLibroPorAutor() {
 		Autor autor1=new Autor("Jorge Luis Borges", "Argentino",86,"Cementerio de los reyes",14061986);
 		
-		CopiaLibro ficciones= new CopiaLibro("Ficciones",Genero.NOVELA,1985,autor1,"editorial",30000.0);
+		CopiaLibro ficciones= new CopiaLibro("Ficciones",Genero.NOVELA,1985,autor1,"editorial",30000.0, null);
 		
 		Boolean seIntentaAgregar=autor1.agregarLibro(ficciones);
 		Boolean sePudoAgregar=true;
-		
-		
+
 		assertEquals(sePudoAgregar,seIntentaAgregar);
 	}
 }

@@ -23,7 +23,7 @@ public class testFactura {
 		Libreria elAteneo= new Libreria("El Ateneo", "Suipacha 655");
 		Estudiante estudiante = new Estudiante("Pablo", "Argentina", 26, "Monte Grande", 123, 1244,Universidades.UNLAM);
 		Jubilado jubilado = new Jubilado("Anastasio", "Brasil", 93, "Moron", 111);
-		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 98544, elAteneo );
+		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 98544);
 		Cliente cliente = new Cliente("Pedro", "Argentina", 31, "San Justo", 133);
 		Factura facturaEst = new Factura(estudiante); 
 		Factura facturaJub = new Factura(jubilado); 
