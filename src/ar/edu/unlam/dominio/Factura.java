@@ -15,58 +15,74 @@ public class Factura {
 		this.precioTotal = 0.0;
 		nroFactura++;
 	}
-	
+
+	public Double cobrar(Double pago) {
+		calcularPrecioFinal();
+		Double vuelto = 0.0;
+		if (pago > this.precioTotal) {
+			vuelto = pago - this.precioTotal;
+		}
+		return vuelto;
+	}
+
 	public void calcularPrecioFinal() {
-		Double precioParcialDeLaCompra= obtenerPrecioParcialDeLaCompra();
+		Double precioParcialDeLaCompra = obtenerPrecioParcialDeLaCompra();
 		Double iva = Math.ceil((precioParcialDeLaCompra * 21) / 100);
 		this.precioTotal = precioParcialDeLaCompra + iva - aplicarDescuento();
-		
+
 	}
-	
+
 	private Double aplicarDescuento() {
 		Double precioSinDescuento = obtenerPrecioParcialDeLaCompra();
 		Double descuentoAAplicarEnPorcentaje = validarDescuento();
-		Double descuentoAAplicarEnMoneda= Math.ceil((precioSinDescuento * descuentoAAplicarEnPorcentaje / 100));
-		
+		Double descuentoAAplicarEnMoneda = Math.ceil((precioSinDescuento * descuentoAAplicarEnPorcentaje / 100));
+
 		return descuentoAAplicarEnMoneda;
 	}
-	
-     //Pasar modificador de acceso a <private>
+
+	// Pasar modificador de acceso a <private>
 	public Double validarDescuento() {
 		Double descuento = 0.0;
-		if(this.cliente instanceof Estudiante) {
+		if (this.cliente instanceof Estudiante) {
 			descuento = DESCUENTO_ESTUDIANTE;
 		}
-		if(this.cliente instanceof Jubilado) {
+		if (this.cliente instanceof Jubilado) {
 			descuento = DESCUENTO_JUBILADO;
 		}
-		if(this.cliente instanceof Socio) {
+		if (this.cliente instanceof Socio) {
 			descuento = DESCUENTO_SOCIO;
 		}
-		if(this.cliente.getClass() ==  Cliente.class) {
+		if (this.cliente.getClass() == Cliente.class) {
 			descuento = 0.0;
 		}
 		return descuento;
-		
+
 	}
-	
+
 	private Double obtenerPrecioParcialDeLaCompra() {
-		CopiaLibro[] ejemplaresACobrar= this.cliente.getLibrosComprados();
-		Double precioParcial= 0.0;
-		for(int i=0; i< ejemplaresACobrar.length; i++) {
-			if(ejemplaresACobrar[i]!=null) {
-				
-				precioParcial+= ejemplaresACobrar[i].getPrecio();
+		CopiaLibro[] ejemplaresACobrar = this.cliente.getLibrosComprados();
+		Double precioParcial = 0.0;
+		for (int i = 0; i < ejemplaresACobrar.length; i++) {
+			if (ejemplaresACobrar[i] != null) {
+
+				precioParcial += ejemplaresACobrar[i].getPrecio();
 			}
-			
+
 		}
-		
+
 		return precioParcial;
 	}
-	
-	
-	
 
+	public Cliente getCliente() {
+		return cliente;
+	}
 
+	public static Integer getNroFactura() {
+		return nroFactura;
+	}
+
+	public Double getPrecioTotal() {
+		return precioTotal;
+	}
 
 }

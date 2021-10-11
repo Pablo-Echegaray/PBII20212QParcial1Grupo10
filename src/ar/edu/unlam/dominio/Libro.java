@@ -1,5 +1,7 @@
 package ar.edu.unlam.dominio;
 
+import java.util.Objects;
+
 public abstract class Libro {
 	private String titulo;
 	private Genero genero;
@@ -17,6 +19,8 @@ public abstract class Libro {
 		this.precio = precio;
 
 	}
+	
+	protected abstract void actualizarCantidadParcialLibrosEnStock();
 
 	public String getTitulo() {
 		return titulo;
@@ -61,5 +65,26 @@ public abstract class Libro {
 	public Double getPrecio() {
 		return this.precio;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(anioEdicion, autor, editorial, genero, precio, titulo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Libro other = (Libro) obj;
+		return Objects.equals(anioEdicion, other.anioEdicion) && Objects.equals(autor, other.autor)
+				&& Objects.equals(editorial, other.editorial) && genero == other.genero
+				&& Objects.equals(precio, other.precio) && Objects.equals(titulo, other.titulo);
+	}
+	
+
 
 }
