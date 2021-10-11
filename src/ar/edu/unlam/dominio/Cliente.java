@@ -12,7 +12,7 @@ public class Cliente extends Persona{
 		
 	}
 	
-	public Boolean ComprarLibro (CopiaLibro libro) {
+	public Boolean comprarLibro (CopiaLibro libro) {
 		Boolean sePuedeComprarLibro=false;
 		
 		for (int i = 0; i < librosComprados.length; i++) {
