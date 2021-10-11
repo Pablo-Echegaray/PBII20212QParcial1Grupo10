@@ -4,13 +4,15 @@ import java.util.Objects;
 
 public class Socio extends Cliente {
 
-	private Integer numeroSocio;
+	private static Integer numeroSocio=0;
+	private Integer nroSocio=0;
 
-	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni, Integer numeroSocio,
+	public Socio(String nombre, String nacionalidad, Integer edad, String domicilio, Integer dni,
 			Libreria libreria) {
 		super(nombre, nacionalidad, edad, domicilio, dni, libreria);
 
-		this.numeroSocio = numeroSocio;
+		numeroSocio++;
+		this.nroSocio=numeroSocio;
 
 	}
 
@@ -30,13 +32,11 @@ public class Socio extends Cliente {
 
 	}
 
-	public Integer getNumeroSocio() {
-		return numeroSocio;
+	
+	public  Integer getNumeroSocio() {
+		return nroSocio;
 	}
 
-	public void setNumeroSocio(Integer numeroSocio) {
-		this.numeroSocio = numeroSocio;
-	}
 
 	@Override
 	public int hashCode() {

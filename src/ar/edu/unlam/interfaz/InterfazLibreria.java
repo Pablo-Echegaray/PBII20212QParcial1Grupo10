@@ -56,13 +56,11 @@ public class InterfazLibreria {
 
 	private static void guardarDatosLibro() {
 
-		System.out.println("---------------------------------------------");
-		System.out.println("De que autor es el libro que vas a ingresar? ");
-		System.out.println("---------------------------------------------");
+		
 		String nombre, nacionalidad, domicilio;
 		Integer edad, dni;
 
-		System.out.println("Introduzca el nombre y apellido: ");
+		System.out.println("Introduzca el nombre y apellido del Autor: ");
 		nombre = teclado.nextLine();
 
 		System.out.println("Introduzca la nacionalidad: ");
@@ -93,7 +91,7 @@ public class InterfazLibreria {
 		System.out.println("Introduzca la editorial: ");
 		editorial = teclado.nextLine();
 
-		System.out.println("Introduzca a�o de edicion: ");
+		System.out.println("Introduzca anio de edicion: ");
 		anioEdicion = teclado.nextInt();
 		teclado.nextLine();
 
@@ -104,10 +102,10 @@ public class InterfazLibreria {
 
 		CopiaLibro nuevaCopia = new CopiaLibro(titulo, genero, anioEdicion, autor, editorial, precio,
 				cantidadIngresadaEnStock);
-		System.out.println(nuevaCopia.toString());
+		System.out.println("Usted acaba de ingresar " + nuevaCopia.getTitulo());
 		libreria.agregarCopiaLibro(nuevaCopia);
 		cantidadIngresadaEnStock++;
-		System.out.println(libreria.agregarCopiaLibro(nuevaCopia));
+		//System.out.println(libreria.agregarCopiaLibro(nuevaCopia));
 	}
 
 	private static int seleccionarOpcionGenero() {
@@ -189,24 +187,26 @@ public class InterfazLibreria {
 		switch (tipoCliente) {
 		case 1:
 			Integer numeroLibretaEstudiante;
-			System.out.println("Introduce el n�mero de libreta: ");
+			System.out.println("Introduce el numero de libreta: ");
 			numeroLibretaEstudiante = teclado.nextInt();
 			teclado.nextLine();
 
 			Estudiante estudianteNuevo = new Estudiante(nombre, nacionalidad, edad, domicilio, dni, libreria,
 					numeroLibretaEstudiante, Universidades.UBA);
-			System.out.println("se creo " + estudianteNuevo.toString());
+			System.out.println("Se creo el estudiante " + estudianteNuevo.getNombre());
 			break;
 		case 2:
-			Jubilado jubiladoNuevo = new Jubilado(nombre, nacionalidad, edad, domicilio, dni, libreria);
-			System.out.println("se creo " + jubiladoNuevo.toString());
+			Integer numeroCarnetJubilado;
+			System.out.println("Introduce el numero de carnet de Jubilado: ");
+			numeroCarnetJubilado = teclado.nextInt();
+			teclado.nextLine();
+			Jubilado jubiladoNuevo = new Jubilado(nombre, nacionalidad, edad, domicilio, dni, libreria, numeroCarnetJubilado);
+			System.out.println("Se creo el Jubilado " + jubiladoNuevo.getNombre());
 			break;
 		case 3:
-			Integer identificadorSocio;
-			System.out.println("Ingrese el identificador de Socio");
-			identificadorSocio = teclado.nextInt();
-			Socio socioNuevo = new Socio(nombre, nacionalidad, edad, domicilio, dni, identificadorSocio, libreria);
-			System.out.println("se creo " + socioNuevo.toString());
+			
+			Socio socioNuevo = new Socio(nombre, nacionalidad, edad, domicilio, dni, libreria);
+			System.out.println("Se creo el socio numero: " + socioNuevo.getNumeroSocio() + ". Nombre titular: " +socioNuevo.getNombre());
 			break;
 		case 4:
 			Cliente clienteNuevo = new Cliente(nombre, nacionalidad, edad, domicilio, dni, libreria);

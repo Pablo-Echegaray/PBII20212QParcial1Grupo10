@@ -49,11 +49,11 @@ public class CopiaLibro extends Libro {
 
 
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "CopiaLibro [cantidadIngresadaEnStock=" + cantidadIngresadaEnStock + ", cantidadVendida="
 				+ cantidadVendida + ", cantidadParcialEnStock=" + cantidadParcialEnStock + "]" + " Titulo : " + getTitulo()+ " Autor "+ getAutor().getNombre();
-	}
+	}*/
 
 	
 
