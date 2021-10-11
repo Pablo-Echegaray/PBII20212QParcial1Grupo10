@@ -3,78 +3,252 @@ package ar.edu.unlam.interfaz;
 import java.util.Scanner;
 
 import ar.edu.unlam.dominio.Autor;
+import ar.edu.unlam.dominio.Cliente;
 import ar.edu.unlam.dominio.CopiaLibro;
+import ar.edu.unlam.dominio.Estudiante;
 import ar.edu.unlam.dominio.Genero;
+import ar.edu.unlam.dominio.Jubilado;
 import ar.edu.unlam.dominio.Libreria;
+import ar.edu.unlam.dominio.Socio;
+import ar.edu.unlam.dominio.Universidades;
 
 public class InterfazLibreria {
 	static Scanner teclado = new Scanner(System.in);
 
+	static Libreria libreria = new Libreria("LIBRERIA", "CABA");
+
 	public static void main(String[] args) {
 
-		Libreria libreria = new Libreria("Ateneo", "CABA");
-		Autor autor = new Autor("Michael Foucault", "Francesa", 1930, "Paris", 123);
-		CopiaLibro libro = new CopiaLibro("Vigilar y Castigar", Genero.ACADEMICO, 1975, autor, "Éditions Gallimard",
-				900.0, 2);
-		Boolean agrego = libreria.agregarCopiaLibro(libro);
-		System.out.println(agrego);
-		CopiaLibro libroA = new CopiaLibro("Otro Libro", Genero.CIENCIA_FICCION, 1700, autor, "Editorial", 12100.0, 5);
-		Boolean agrego2 = libreria.agregarCopiaLibro(libroA);
-		System.out.println(agrego2);
-		CopiaLibro libroB = new CopiaLibro("Libro B", Genero.TERROR, 1980, autor, "Editorial", 100.0, 5);
-		Boolean agrego3 = libreria.agregarCopiaLibro(libroB);
-		System.out.println(agrego3);
-		CopiaLibro libroC = new CopiaLibro("Libro C", Genero.NOVELA, 2011, autor, "Editorial gg", 800.0, 5);
-		Boolean agrego4 = libreria.agregarCopiaLibro(libroC);
-		System.out.println(agrego4);
-		CopiaLibro libroD = new CopiaLibro("Libro D", Genero.CUENTOS, 2021, autor, "Editorial gg", 1800.0, 7);
-		Boolean agrego5 = libreria.agregarCopiaLibro(libroD);
-		System.out.println(agrego5);
-		Boolean agrego6 = libreria.agregarCopiaLibro(libroD);
-		System.out.println(agrego6);
-
-		CopiaLibro[] librosEnStock = libreria.getLibrosEnStock();
-
-		for (int i = 0; i < librosEnStock.length; i++) {
-			if (librosEnStock[i] != null) {
-				System.out.println(librosEnStock[i].toString() + "\n");
+		int opcion = 0;
+		do {
+			opcion = seleccionarOpcion();
+			switch (opcion) {
+			case 1:
+				crearCliente();
+				break;
+			case 2:
+				guardarDatosLibro();
+				break;
+			case 3:
+				// venderLibro();
+				break;
+			case 9:
+				break;
+			default:
+				System.out.println("Opcion Invalida");
+				break;
 			}
+
+		} while (opcion != 9);
+	}
+	/*
+	 * private static void venderLibro() {
+	 * System.out.println("Introduzca el titulo del libro: "); String
+	 * titulo=teclado.nextLine();
+	 * 
+	 * System.out.println("Introduzca precio: "); Double
+	 * precio=(Double)teclado.nextDouble(); teclado.nextLine(); CopiaLibro copia=new
+	 * CopiaLibro(titulo, null, null, null, null, precio, null);
+	 * System.out.println("Se vendio"+libreria.vender(copia));
+	 * 
+	 * }
+	 */
+
+	private static void guardarDatosLibro() {
+
+		System.out.println("---------------------------------------------");
+		System.out.println("De que autor es el libro que vas a ingresar? ");
+		System.out.println("---------------------------------------------");
+		String nombre, nacionalidad, domicilio;
+		Integer edad, dni;
+
+		System.out.println("Introduzca el nombre y apellido: ");
+		nombre = teclado.nextLine();
+
+		System.out.println("Introduzca la nacionalidad: ");
+		nacionalidad = teclado.nextLine();
+
+		System.out.println("Introduzca la edad: ");
+		edad = teclado.nextInt();
+		teclado.nextLine();
+		System.out.println("Introduzca el domicilio: ");
+		domicilio = teclado.next();
+
+		System.out.println("Introduzca el numero de DNI: ");
+		dni = teclado.nextInt();
+		teclado.nextLine();
+		Autor autor = new Autor(nombre, nacionalidad, edad, domicilio, dni);
+
+		System.out.println("-----------------------------------------------");
+		System.out.println("Ingresar copia libro en el stock libreria: ");
+		System.out.println("-----------------------------------------------");
+		String titulo, editorial;
+		Double precio;
+		Integer anioEdicion, cantidadIngresadaEnStock = 0;
+		Genero genero;
+
+		System.out.println("Introduzca el titulo del libro: ");
+		titulo = teclado.nextLine();
+
+		System.out.println("Introduzca la editorial: ");
+		editorial = teclado.nextLine();
+
+		System.out.println("Introduzca aï¿½o de edicion: ");
+		anioEdicion = teclado.nextInt();
+		teclado.nextLine();
+
+		System.out.println("Introduzca precio: ");
+		precio = teclado.nextDouble();
+
+		genero = elegirGenero();
+
+		CopiaLibro nuevaCopia = new CopiaLibro(titulo, genero, anioEdicion, autor, editorial, precio,
+				cantidadIngresadaEnStock);
+		System.out.println(nuevaCopia.toString());
+		libreria.agregarCopiaLibro(nuevaCopia);
+		cantidadIngresadaEnStock++;
+		System.out.println(libreria.agregarCopiaLibro(nuevaCopia));
+	}
+
+	private static int seleccionarOpcionGenero() {
+		int opcionGenero;
+		System.out.println("------------------------------------");
+		System.out.println("Introduzca una opcion para genero: ");
+		System.out.println("1-Terror");
+		System.out.println("2-Novela");
+		System.out.println("3-Cuentos");
+		System.out.println("4-Ciencia Ficcion");
+		System.out.println("5-Academico");
+		System.out.println("6-Salir");
+		System.out.println("------------------------------------");
+		System.out.println("");
+		opcionGenero = teclado.nextInt();
+		teclado.nextLine();
+		return opcionGenero;
+
+	}
+
+	private static Genero elegirGenero() {
+		int opcionGenero = 0;
+		Genero genero = null;
+
+		opcionGenero = seleccionarOpcionGenero();
+
+		switch (opcionGenero) {
+
+		case 1:
+			genero = Genero.TERROR;
+			break;
+		case 2:
+			genero = Genero.NOVELA;
+
+			break;
+		case 3:
+			genero = Genero.CUENTOS;
+			break;
+		case 4:
+			genero = Genero.CIENCIA_FICCION;
+			break;
+		case 5:
+			genero = Genero.ACADEMICO;
+			break;
+		default:
+			System.out.println("Esta opcion es incorrecta");
+			break;
 		}
-		System.out.println("--------------------------------------------------------------------------");
+		return genero;
 
-		Boolean vendo = libreria.venderLibro(libro);
-		System.out.println(vendo);
-		Boolean vendo2 = libreria.venderLibro(libroA);
-		System.out.println(vendo2);
-		Boolean vendo3 = libreria.venderLibro(libroB);
-		System.out.println(vendo3);
-		Boolean vendo4 = libreria.venderLibro(libroC);
-		System.out.println(vendo4);
-		Boolean vendo5 = libreria.venderLibro(libroD);
-		System.out.println(vendo5);
+	}
 
-		CopiaLibro[] vendidos = libreria.getLibrosVendidos();
-		for (int i = 0; i < vendidos.length; i++) {
-			if (librosEnStock[i] != null) {
-				System.out.println(vendidos[i].toString() + "\n");
-			}
+	private static void crearCliente() {
+		String nombre, nacionalidad, domicilio;
+		Integer edad, dni;
+
+		System.out.println("Introduzca el nombre y apellido: ");
+		nombre = teclado.nextLine();
+
+		System.out.println("Introduzca la nacionalidad:");
+		nacionalidad = teclado.nextLine();
+
+		System.out.println("Introduzca el domicilio: ");
+		domicilio = teclado.nextLine();
+
+		System.out.println("Introduzca la edad: ");
+		edad = teclado.nextInt();
+
+		System.out.println("Introduzca el numero de DNI: ");
+		dni = teclado.nextInt();
+
+		tipoCliente(nombre, nacionalidad, domicilio, edad, dni);
+
+	}
+
+	private static void tipoCliente(String nombre, String nacionalidad, String domicilio, Integer edad, Integer dni) {
+		int tipoCliente = 0;
+		tipoCliente = seleccionarTipoCliente();
+		switch (tipoCliente) {
+		case 1:
+			Integer numeroLibretaEstudiante;
+			System.out.println("Introduce el nï¿½mero de libreta: ");
+			numeroLibretaEstudiante = teclado.nextInt();
+			teclado.nextLine();
+
+			Estudiante estudianteNuevo = new Estudiante(nombre, nacionalidad, edad, domicilio, dni, libreria,
+					numeroLibretaEstudiante, Universidades.UBA);
+			System.out.println("se creo " + estudianteNuevo.toString());
+			break;
+		case 2:
+			Jubilado jubiladoNuevo = new Jubilado(nombre, nacionalidad, edad, domicilio, dni, libreria);
+			System.out.println("se creo " + jubiladoNuevo.toString());
+			break;
+		case 3:
+			Integer identificadorSocio;
+			System.out.println("Ingrese el identificador de Socio");
+			identificadorSocio = teclado.nextInt();
+			Socio socioNuevo = new Socio(nombre, nacionalidad, edad, domicilio, dni, identificadorSocio, libreria);
+			System.out.println("se creo " + socioNuevo.toString());
+			break;
+		case 4:
+			Cliente clienteNuevo = new Cliente(nombre, nacionalidad, edad, domicilio, dni, libreria);
+			// System.out.println("se creo "+clienteNuevo.toString());
+			break;
+		default:
+			System.out.println("Opcion incorrecta");
+			break;
 		}
+	}
 
-		System.out.println("-----------------------------------------------------------------------------");
-		Boolean vendoLibro = libreria.venderLibro(libro);
-		System.out.println(vendoLibro);
-		vendidos = libreria.getLibrosVendidos();
-		for (int i = 0; i < vendidos.length; i++) {
-			if (librosEnStock[i] != null) {
-				System.out.println(vendidos[i].toString() + "\n");
-			}
-		}
+	private static int seleccionarTipoCliente() {
+		int tipoCliente;
+		System.out.println("------------------------------------");
+		System.out.println(" Indicar su categoria ");
+		System.out.println("1- Estudiante");
+		System.out.println("2- Jubilado");
+		System.out.println("3- Socio");
+		System.out.println("4- Ninguna");
+		System.out.println("------------------------------------");
+		tipoCliente = teclado.nextInt();
+		teclado.nextLine();
+		return tipoCliente;
+	}
 
-		System.out.println("---------------------------------------------------------------------------------");
-		CopiaLibro mejorVendido = libreria.bestSeller();
-		// System.out.println(bestSeller.toString());
+	private static int seleccionarOpcion() {
 
-		System.out.println("Mejor vendido: " + mejorVendido.toString());
+		int opcionSeleccionada = 0;
+
+		System.out.println("-----------------------------------");
+		System.out.println("BIENVENIDO A LIBRERIA");
+		System.out.println("Menu de opciones\n");
+		System.out.println("1 - Ingresar nuevo cliente");
+		System.out.println("2 - Guardar datos de un Libro");
+		// System.out.println("3 - Vender libro");
+		System.out.println("9 - Salir");
+		System.out.println("-----------------------------------");
+		System.out.println("Ingrese una opcion");
+
+		opcionSeleccionada = teclado.nextInt();
+		teclado.nextLine();
+		return opcionSeleccionada;
 
 	}
 
