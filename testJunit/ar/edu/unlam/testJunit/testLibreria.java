@@ -63,7 +63,7 @@ public class testLibreria {
 	@Test
 	public void queSePuedaAgregarUnSocio() {
 		Libreria elAteneo = new Libreria("El Ateneo", "Suipacha 655");
-		Socio pablo = new Socio("Pablo", "Uruguayo", 20, "Jonte 502", 5615, 26540, elAteneo);
+		Socio pablo = new Socio("Pablo", "Uruguayo", 20, "Jonte 502", 5615, 111, elAteneo);
 
 		Boolean seIntentaAgregar = elAteneo.agregarUnSocio(pablo);
 		Boolean seAgrego = true;
@@ -77,7 +77,7 @@ public class testLibreria {
 	@Test
 	public void queSePuedaDarDeBaja() {
 		Libreria elAteneo = new Libreria("El Ateneo", "Suipacha 655");
-		Socio pablo = new Socio("Pablo", "Uruguayo", 20, "Jonte 502", 5615, 26540, elAteneo);
+		Socio pablo = new Socio("Pablo", "Uruguayo", 20, "Jonte 502", 5615, 111, elAteneo);
 
 		Boolean seIntentaAgregar = elAteneo.agregarUnSocio(pablo);
 		Boolean seIntentaDarDeBaja = elAteneo.darDeBajaSocio(pablo);

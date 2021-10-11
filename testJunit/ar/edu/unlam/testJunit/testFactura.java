@@ -25,7 +25,7 @@ public class testFactura {
 		Estudiante estudiante = new Estudiante("Pablo", "Argentina", 26, "Monte Grande", 123, elAteneo, 1244,
 				Universidades.UNLAM);
 		Jubilado jubilado = new Jubilado("Anastasio", "Brasil", 93, "Moron", 111, elAteneo);
-		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 98544, elAteneo);
+		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 111, elAteneo);
 		Cliente cliente = new Cliente("Pedro", "Argentina", 31, "San Justo", 133, elAteneo);
 		Factura facturaEst = new Factura(estudiante);
 		Factura facturaJub = new Factura(jubilado);
@@ -60,7 +60,7 @@ public class testFactura {
 		Estudiante estudiante = new Estudiante("Pablo", "Argentina", 26, "Monte Grande", 123, elAteneo, 1244,
 				Universidades.UNLAM);
 		Jubilado jubilado = new Jubilado("Anastasio", "Brasil", 93, "Moron", 111, elAteneo);
-		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 98544, elAteneo);
+		Socio socio = new Socio("Franco", "Uruguay", 35, "Lomas de Zamora", 122, 111, elAteneo);
 		Cliente cliente = new Cliente("Pedro", "Argentina", 31, "San Justo", 133, elAteneo);
 		Autor autor = new Autor("Antonie", "Francesa", 98, "Torre Eifel 520", 20132);
 		CopiaLibro elPrincipito = new CopiaLibro("El Principito", Genero.CUENTOS, 2000, autor, "Planeta", 850.0, 10);
@@ -69,6 +69,10 @@ public class testFactura {
 		Double vueltoJubilado = 278.0;
 		Double vueltoSocio = 76.0;
 		Double vueltoCliente = 471.0;
+		// se agregan a stock
+		elAteneo.agregarCopiaLibro(libro);
+		elAteneo.agregarCopiaLibro(elPrincipito);
+		// clientes compran
 		estudiante.comprarLibro(libro);
 		estudiante.comprarLibro(elPrincipito);
 		jubilado.comprarLibro(libro);

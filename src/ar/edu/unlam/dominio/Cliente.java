@@ -58,4 +58,10 @@ public class Cliente extends Persona {
 		this.librosComprados = librosComprados;
 	}
 
+	@Override
+	public String toString() {
+		return "Cliente [getNombre()=" + getNombre() + ", getNacionalidad()=" + getNacionalidad() + ", getEdad()="
+				+ getEdad() + ", getDomicilio()=" + getDomicilio() + ", getDni()=" + getDni() + "]";
+	}
+
 }

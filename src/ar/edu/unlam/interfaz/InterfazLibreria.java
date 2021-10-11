@@ -93,7 +93,7 @@ public class InterfazLibreria {
 		System.out.println("Introduzca la editorial: ");
 		editorial = teclado.nextLine();
 
-		System.out.println("Introduzca a�o de edicion: ");
+		System.out.println("Introduzca anio de edicion: ");
 		anioEdicion = teclado.nextInt();
 		teclado.nextLine();
 
